@@ -20,6 +20,9 @@ function generate(e) {
     postData('/add', {date: newDate, temp: data.main.temp, content: feeling})
     retrieveData('/all')
   });
+  document.getElementById("zip").value = ""
+  document.getElementById("feelings").value = ""
+
 }
 
 /* Function to GET Web API Data*/
