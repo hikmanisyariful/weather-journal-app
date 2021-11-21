@@ -3,11 +3,11 @@ const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const idCountry = ",US";
 
 // Personal API Key for OpenWeatherMap API
-const apiKey = `&appid=632803a19551c6a857ac74b54a1b12d3`;
+const apiKey = `&appid=632803a19551c6a857ac74b54a1b12d3&units=imperial`;
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth()+1 + "." + d.getDate() + "." + d.getFullYear();
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById("generate").addEventListener("click", generate);
@@ -16,23 +16,34 @@ document.getElementById("generate").addEventListener("click", generate);
 function generate(e) {
   const zip = document.getElementById("zip").value;
   const feeling = document.getElementById("feelings").value;
-  getApi(zip).then(data => {
-    postData('/add', {date: newDate, temp: data.main.temp, content: feeling})
-    retrieveData('/all')
-  });
+  if (zip.length !== 5) {
+    alert('Please, enter right zip code. It consists of 5 numbers.')
+  } else {
+    getAPI(zip).then(data => {
+      postData('/add', {date: newDate, temp: data.main.temp, content: feeling})
+      retrieveData()
+    });
+  }
+  
   document.getElementById("zip").value = ""
   document.getElementById("feelings").value = ""
-
 }
 
 /* Function to GET Web API Data*/
-const getApi = async zip => {
-  const response = await fetch(baseURL + zip + idCountry + apiKey)
+const getAPI = async zip => {
   try {
-    const data = await response.json();
-    return data
+    const response = await axios.get(baseURL + zip + idCountry + apiKey)
+    return response.data
   } catch (error) {
-    console.log('Error::getApi', error);
+    console.log('Error::getAPI', error.response.data);
+    errorHandling(error)
+  }
+
+  function errorHandling(error) {
+    if (error.response.data.cod === '404') {
+      location.reload();
+      return alert('Sorry, the zip code was not found. Please try again!')
+    }
   }
 };
 
@@ -56,15 +67,19 @@ const postData = async (url, data) => {
 } 
 
 /* Function to GET Project Data */
-const retrieveData = async (url) => {
-  const response = await fetch(url)
-
+const retrieveData = async () =>{
+  const request = await fetch('/all');
   try {
-    const newEntry = await response.json()
-    document.getElementById('date').innerHTML = newEntry[newDate].date;
-    document.getElementById('temp').innerHTML = `${(newEntry[newDate].temp)} degrees`;
-    document.getElementById('content').innerHTML = newEntry[newDate].content;
-  } catch (error) {
-    console.log('Error::retrieveData', error)
+    // Transform into JSON
+    const allData = await request.json()
+    console.log(allData)
+    // Write updated data to DOM elements
+    document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
+    document.getElementById('content').innerHTML = allData.feel;
+    document.getElementById('date').innerHTML =allData.date;
+  }
+  catch(error) {
+    console.log("Error::retrieveDatar", error);
+    // appropriately handle the error
   }
 }

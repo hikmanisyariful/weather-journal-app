@@ -32,12 +32,11 @@ app.get("/all", (req, res) => {
 
 app.post("/add", (req, res) => {
   const newEntryHolder = {
-    [`${req.body.date}`] : {
       date: req.body.date,
       temp: req.body.temp,
-      content: req.body.content
+      feel: req.body.content
     }
-  }
+
   Object.assign(projectData, newEntryHolder)
   res.send({message: 'Data has been entered successfully'})
 });
