@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
@@ -6,6 +8,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 3000;
+
+// Personal API Key for OpenWeatherMap API
+const apiKey = `${process.env.API_KEY}&units=imperial`;
 
 // Start up an instance of app
 const app = express();

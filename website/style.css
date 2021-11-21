@@ -13,26 +13,33 @@ body {
   justify-content: center;
   grid-gap: 1em;
   font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
-.holder {}
+.holder {
+}
 
 .entry {
-  background: rgba(59, 74, 107, .4);
+  background: rgba(59, 74, 107, 0.4);
 }
 
-#entryHolder {}
+#entryHolder {
+}
 
-#date {}
+#date {
+}
 
-#temp {}
+#temp {
+}
 
-#content {}
+#content {
+}
 
-.headline {}
+.headline {
+}
 
-.title {}
+.title {
+}
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
@@ -47,7 +54,7 @@ input {
   background: #22b2da;
   color: #f0d43a;
   font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   border: none;
 }
 
@@ -57,7 +64,7 @@ button {
   background: #3b4a6b;
   color: #f0d43a;
   font-size: 26px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   border: none;
   box-shadow: 2px 4px 5px #444;
 }
@@ -70,7 +77,7 @@ textarea {
   background: #22b2da;
   color: #f0d43a;
   font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 /* Reset style for HTML element on active to have no border*/
@@ -85,20 +92,17 @@ button:focus {
 ::placeholder {
   /* Firefox, Chrome, Opera */
   color: #f0d43a;
-  font-family: 'Oswald', sans-serif;
-
+  font-family: "Oswald", sans-serif;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #f0d43a;
-  font-family: 'Oswald', sans-serif;
-
+  font-family: "Oswald", sans-serif;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #f0d43a;
-  font-family: 'Oswald', sans-serif;
-
+  font-family: "Oswald", sans-serif;
 }
