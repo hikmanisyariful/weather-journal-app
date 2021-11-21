@@ -1,10 +1,11 @@
 /* Global Variables */
 
+// Personal API Key for OpenWeatherMap API
+const apiKey = `bf16363ce0f0b5b2e85b06f40a40046f&units=imperial`;
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
-
-// Personal API Key for OpenWeatherMap API
 
 // Event listener to add function to existing HTML DOM element
 
